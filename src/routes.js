@@ -1,15 +1,12 @@
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Route } from "react-router";
 
-// Import layouts
-import BaseLayout from "./layouts/Base";
-import AdminLayout from "./layouts/Admin";
-
-// Import pages
-import AdminIndexPage from "./pages/index/Index";
+// Admin
+import AdminTemplate from "./components/admin/template";
+import AdminIndexPage from "./components/admin/index";
 
 export default (
-  <Route name="admin" path="/admin" component={AdminLayout}>
+  <Route name="admin" path="/admin" component={AdminTemplate}>
     <Route name="admin.index" path="/" component={AdminIndexPage} />
   </Route>
 )
