@@ -4,7 +4,6 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Title from './Title';
 import Footer from './Footer';
 
 class Template extends Component {
@@ -21,7 +20,6 @@ class Template extends Component {
             </Col>
 
             <Col xs={12} md={8} lg={9}>
-              <Title/>
               {this.props.children}
             </Col>
           </Row>

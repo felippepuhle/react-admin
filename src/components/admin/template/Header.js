@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
@@ -10,7 +11,7 @@ class Header extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">React-Admin</a>
+              <Link to="/">React-Admin</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

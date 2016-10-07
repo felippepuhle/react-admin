@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import Content from '../template/Content';
+
 class Index extends Component {
 
   render() {
     return (
-      <div>
+      <Content>
         Welcome to our React Admin! ;)
-      </div>
+      </Content>
     )
   }
 
