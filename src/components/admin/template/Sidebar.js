@@ -19,7 +19,7 @@ class Sidebar extends Component {
 
           <LinkContainer to={{ pathname: '/users' }}>
             <NavItem eventKey={3}>Users</NavItem>
-            </LinkContainer>
+          </LinkContainer>
         </Nav>
       </aside>
     )
