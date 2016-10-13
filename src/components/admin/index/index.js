@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Content from '../template/Content';
+import Content from '../templates/base/Content';
 
 class Index extends Component {
 

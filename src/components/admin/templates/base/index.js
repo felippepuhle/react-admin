@@ -4,9 +4,8 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
 
-class Template extends Component {
+class Base extends Component {
 
   render() {
   	return (
@@ -24,12 +23,10 @@ class Template extends Component {
             </Col>
           </Row>
         </Grid>
-
-        <Footer/>
       </div>
     )
   }
 
 }
 
-export default Template;
+export default Base;
