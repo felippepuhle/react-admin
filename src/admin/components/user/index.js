@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Content from '../templates/base/Content';
 
-class Groups extends Component {
+class User extends Component {
 
   render() {
     return (
@@ -14,13 +14,13 @@ class Groups extends Component {
 
 }
 
-Groups.defaultProps = {
-  title: 'Groups',
-  subtitle: 'Listing all groups',
+User.defaultProps = {
+  title: 'Users',
+  subtitle: 'Listing all users',
   breadcrumb: [
-    { 'url': '/groups', 'desc': 'Groups' },
+    { 'url': '/admin/users', 'desc': 'Users' },
     { 'desc': 'List' }
   ]
 };
 
-export default Groups;
+export default User;

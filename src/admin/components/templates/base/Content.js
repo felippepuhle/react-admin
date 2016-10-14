@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 import { PageHeader, Breadcrumb } from 'react-bootstrap';
 
@@ -11,10 +11,10 @@ class Content extends Component {
 
     var itemsQty = this.props.breadcrumb.length-1;
     var items = this.props.breadcrumb.map(function(element, index) {
-      var active = (index === itemsQty) ? 'active' : '';
+      var active = (index === itemsQty);
 
       return (
-        <Breadcrumb.Item href={element.url} active={active}>
+        <Breadcrumb.Item key={index} href={element.url} active={active}>
           {element.desc}
         </Breadcrumb.Item>
       )

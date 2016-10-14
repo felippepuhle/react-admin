@@ -1,10 +1,14 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Router, browserHistory } from "react-router";
-import routes from './routes';
+import { createStore } from 'redux'
+import reducers from './reducers'
+
+import Root from './containers/Root'
+
+const store = createStore(reducers)
 
 ReactDOM.render(
-  <Router routes={routes} history={browserHistory} />,
+  <Root store={store} />,
   document.getElementById('root')
 );
