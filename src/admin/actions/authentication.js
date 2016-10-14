@@ -21,3 +21,17 @@ export function loginError(errors) {
 export function logout() {
   return { type: LOGOUT };
 }
+
+export function doLogin(login, password, redirect="/") {
+  return function(dispatch) {
+    dispatch(loginStart());
+
+    setTimeout(function() {
+        dispatch(loginComplete({
+          token: 'anytokenhere',
+          name: 'Felippe Rodrigo Puhle',
+          email: 'felippe.puhle@gmail.com'
+        }));
+    }, 5000)
+  }
+}

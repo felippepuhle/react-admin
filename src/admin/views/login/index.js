@@ -1,58 +1,65 @@
 import React, { Component } from 'react'
 
-import { Form, FormGroup, FormControl, ControlLabel, Checkbox, Button, Col } from 'react-bootstrap'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import * as actionCreators from '../../actions/authentication'
+
+import FormInput from '../../components/FormInput'
+import FormCheckbox from '../../components/FormCheckbox'
+import FormSubmit from '../../components/FormSubmit'
 
 class Login extends Component {
 
-  construct() {
+  constructor() {
+    super()
+
     this.state = {
-      'username': '',
-      'password': ''
+      login: 'felippe',
+      password: '123456',
+      redirectTo: ''
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-  handleLogin() {
-    // do something
+  handleChange(event) {
+    var newValue = {}
+    newValue[event.target.name] = event.target.value
+
+    this.setState(newValue);
+  }
+
+  handleFormSubmit(evt) {
+    evt.preventDefault();
+
+    this.props.actions.doLogin(this.state.login, this.state.password, this.state.redirectTo);
   }
 
   render() {
     return (
-      <Form horizontal>
-        <FormGroup controlId="formHorizontalEmail">
-          <Col componentClass={ControlLabel} sm={2}>
-            Email
-          </Col>
-          <Col sm={10}>
-            <FormControl type="email" placeholder="Email" />
-          </Col>
-        </FormGroup>
+      <Form horizontal onSubmit={this.handleFormSubmit}>
+        {this.props.isAuthenticating ? <Alert bsStyle="info">Loading...</Alert> : '' }
 
-        <FormGroup controlId="formHorizontalPassword">
-          <Col componentClass={ControlLabel} sm={2}>
-            Password
-          </Col>
-          <Col sm={10}>
-            <FormControl type="password" placeholder="Password" />
-          </Col>
-        </FormGroup>
+        <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
+        <FormInput id="password" name="password" label="Password" type="password" onChange={this.handleChange} />
+        <FormCheckbox />
 
-        <FormGroup>
-          <Col smOffset={2} sm={10}>
-            <Checkbox>Remember me</Checkbox>
-          </Col>
-        </FormGroup>
-
-        <FormGroup>
-          <Col smOffset={2} sm={10}>
-            <Button type="submit">
-              Sign in
-            </Button>
-          </Col>
-        </FormGroup>
+        <FormSubmit/>
       </Form>
     )
   }
 
 }
 
-export default Login
+const mapStateToProps = (state) => ({
+  token: state.admin.authentication.token,
+  isAuthenticating: state.admin.authentication.isAuthenticating
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  actions : bindActionCreators(actionCreators, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
