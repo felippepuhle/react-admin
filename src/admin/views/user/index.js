@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Content from '../templates/base/Content';
+import Content from '../../templates/base/Content'
 
 class User extends Component {
 
@@ -21,6 +21,6 @@ User.defaultProps = {
     { 'url': '/admin/users', 'desc': 'Users' },
     { 'desc': 'List' }
   ]
-};
+}
 
-export default User;
+export default User

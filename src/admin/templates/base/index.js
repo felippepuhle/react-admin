@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap'
 
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from './Header'
+import Sidebar from './Sidebar'
 
 class Base extends Component {
 
@@ -29,4 +29,4 @@ class Base extends Component {
 
 }
 
-export default Base;
+export default Base

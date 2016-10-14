@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import { createStore } from 'redux'
-import reducers from './reducers'
+import { Router, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
 
-import Root from './containers/Root'
+import adminReducers from './admin/reducers'
+import routes from './routes'
 
-const store = createStore(reducers)
+const store = createStore(
+  combineReducers({
+    admin: adminReducers
+  })
+)
 
 ReactDOM.render(
-  <Root store={store} />,
+  <Provider store={store}>
+    <Router routes={routes} history={browserHistory} />
+  </Provider>,
   document.getElementById('root')
-);
+)

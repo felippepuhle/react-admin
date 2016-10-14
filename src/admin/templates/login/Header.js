@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import { Navbar } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap'
 
 class Header extends Component {
 
@@ -22,4 +22,4 @@ class Header extends Component {
 
 }
 
-export default Header;
+export default Header

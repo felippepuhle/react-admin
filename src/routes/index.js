@@ -1,15 +1,15 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router';
+import React from 'react'
+import { Route, Redirect } from 'react-router'
 
 // Admin - Base
-import AdminBaseTemplate from '../admin/components/templates/base'
-import AdminIndexPage from '../admin/components/index'
-import AdminGroupsPage from '../admin/components/group'
-import AdminUsersPage from '../admin/components/user'
+import AdminBaseTemplate from '../admin/templates/base'
+import AdminIndexPage from '../admin/views/index'
+import AdminGroupsPage from '../admin/views/group'
+import AdminUsersPage from '../admin/views/user'
 
 // Admin - Login
-import AdminLoginTemplate from '../admin/components/templates/login'
-import AdminLoginPage from '../admin/components/login'
+import AdminLoginTemplate from '../admin/templates/login'
+import AdminLoginPage from '../admin/views/login'
 
 // Admin - Authentication
 import Authenticated from '../admin/security/Authenticated'

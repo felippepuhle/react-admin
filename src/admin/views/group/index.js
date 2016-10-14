@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Content from '../templates/base/Content';
+import Content from '../../templates/base/Content'
 
 class Groups extends Component {
 
@@ -21,6 +21,6 @@ Groups.defaultProps = {
     { 'url': '/admin/groups', 'desc': 'Groups' },
     { 'desc': 'List' }
   ]
-};
+}
 
-export default Groups;
+export default Groups

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem } from 'react-bootstrap'
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 
 class Sidebar extends Component {
 
@@ -27,4 +27,4 @@ class Sidebar extends Component {
 
 }
 
-export default Sidebar;
+export default Sidebar

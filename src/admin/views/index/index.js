@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Content from '../templates/base/Content';
+import Content from '../../templates/base/Content'
 
 class Index extends Component {
 
@@ -14,4 +14,4 @@ class Index extends Component {
 
 }
 
-export default Index;
+export default Index
