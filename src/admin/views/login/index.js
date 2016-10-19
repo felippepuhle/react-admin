@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import { browserHistory } from 'react-router'
+
 import * as actionCreators from '../../actions/authentication'
 
 import { Form, Alert } from 'react-bootstrap'
@@ -26,6 +28,14 @@ class Login extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(nextProps.isAuthenticated) {
+      setTimeout(function() {
+        return browserHistory.push('/admin')
+      }, 500)
+    }
+  }
+
   handleChange(event) {
     var newValue = {}
     newValue[event.target.name] = event.target.value
@@ -42,6 +52,7 @@ class Login extends Component {
   render() {
     return (
       <Form horizontal onSubmit={this.handleFormSubmit}>
+        {this.props.isAuthenticated ? <Alert bsStyle="success">Logged in successfully!</Alert> : '' }
         {this.props.isAuthenticating ? <Alert bsStyle="info">Loading...</Alert> : '' }
 
         <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
@@ -57,6 +68,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
+  isAuthenticated: state.admin.authentication.isAuthenticated,
   isAuthenticating: state.admin.authentication.isAuthenticating
 })
 

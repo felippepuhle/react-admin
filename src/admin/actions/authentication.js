@@ -32,6 +32,6 @@ export function doLogin(login, password, redirect="/") {
           name: 'Felippe Rodrigo Puhle',
           email: 'felippe.puhle@gmail.com'
         }));
-    }, 5000)
+    }, 3000)
   }
 }
