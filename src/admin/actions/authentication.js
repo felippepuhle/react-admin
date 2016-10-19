@@ -22,15 +22,13 @@ export function logout() {
   return { type: LOGOUT };
 }
 
-export function doLogin(login, password, redirect="/") {
+export function doLogin(login, password) {
   return function(dispatch) {
     dispatch(loginStart());
 
     setTimeout(function() {
         dispatch(loginComplete({
-          token: 'anytokenhere',
-          name: 'Felippe Rodrigo Puhle',
-          email: 'felippe.puhle@gmail.com'
+          token: 'anytokenhere'
         }));
     }, 3000)
   }

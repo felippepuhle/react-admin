@@ -15,13 +15,12 @@ import FormSubmit from '../../components/FormSubmit'
 
 class Login extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      login: 'felippe',
-      password: '123456',
-      redirectTo: ''
+      login: '',
+      password: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -31,7 +30,8 @@ class Login extends Component {
   componentWillReceiveProps (nextProps) {
     if(nextProps.isAuthenticated) {
       setTimeout(function() {
-        return browserHistory.push('/admin')
+        let redirect = nextProps.location.query.redirect || '/admin'
+        browserHistory.push(redirect)
       }, 500)
     }
   }
@@ -40,13 +40,12 @@ class Login extends Component {
     var newValue = {}
     newValue[event.target.name] = event.target.value
 
-    this.setState(newValue);
+    this.setState(newValue)
   }
 
   handleFormSubmit(evt) {
-    evt.preventDefault();
-
-    this.props.actions.doLogin(this.state.login, this.state.password, this.state.redirectTo);
+    evt.preventDefault()
+    this.props.actions.doLogin(this.state.login, this.state.password)
   }
 
   render() {
@@ -74,6 +73,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(actionCreators, dispatch)
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

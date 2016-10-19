@@ -8,7 +8,7 @@ function Authenticated(Component) {
 
     componentWillMount () {
       if(!this.props.isAuthenticated) {
-        return browserHistory.push('/admin/login')
+        return browserHistory.push('/admin/login?redirect=' + this.props.location.pathname)
       }
     }
 
