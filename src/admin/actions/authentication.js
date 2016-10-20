@@ -34,10 +34,7 @@ export function doLogin(login, password) {
 
     var api = new API()
 
-    return api.fetch('admin/login', {
-        method: 'POST',
-        body: JSON.stringify({login: login, password: password})
-      })
+    return api.post('admin/login', {login: login, password: password})
       .then(response => {
         dispatch(loginComplete(response.token))
       })

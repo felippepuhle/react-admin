@@ -38,7 +38,7 @@ function authentication(state = initialState, action) {
         isAuthenticating: false,
         message: {
           type: 'danger',
-          text: action.payload.message
+          text: 'You have entered an invalid username or password'
         }
       })
 

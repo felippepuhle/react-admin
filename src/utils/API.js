@@ -31,17 +31,9 @@ class API {
 
     var checkResponseStatus = function(response) {
       if (!response.ok) {
-        return parseResponse(response).then(function(jsonResponse) {
-          var errorMessage = response.statusText
-          if(errorMessage.length === 0 &&
-              typeof jsonResponse.message !== typeof undefined) {
-            errorMessage = jsonResponse.message
-          }
-
-          var error = new Error(errorMessage)
-          error.number = response.status
-          throw error
-        })
+        var error = new Error(response.statusText)
+        error.number = response.status
+        throw error
       }
 
       return response
@@ -50,6 +42,21 @@ class API {
     return fetch(this.urlFor(uri), this.generateOptions(options))
         .then(checkResponseStatus)
         .then(parseResponse)
+  }
+
+  get(uri, options) {
+    return this.fetch(uri, Object.assign({}, options, {
+        method: 'GET'
+      })
+    )
+  }
+
+  post(uri, data, options) {
+    return this.fetch(uri, Object.assign({}, options, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+    )
   }
 }
 
