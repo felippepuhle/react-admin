@@ -29,10 +29,8 @@ class Login extends Component {
 
   componentWillReceiveProps (nextProps) {
     if(nextProps.isAuthenticated) {
-      setTimeout(function() {
-        let redirect = nextProps.location.query.redirect || '/admin'
-        browserHistory.push(redirect)
-      }, 500)
+      let redirect = nextProps.location.query.redirect || '/admin'
+      browserHistory.push(redirect)
     }
   }
 
@@ -51,8 +49,8 @@ class Login extends Component {
   render() {
     return (
       <Form horizontal onSubmit={this.handleFormSubmit}>
-        {this.props.isAuthenticated ? <Alert bsStyle="success">Logged in successfully!</Alert> : '' }
         {this.props.isAuthenticating ? <Alert bsStyle="info">Loading...</Alert> : '' }
+        {this.props.errorMessage ? <Alert bsStyle="danger">{this.props.errorMessage}</Alert> : '' }
 
         <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
         <FormInput id="password" name="password" label="Password" type="password" onChange={this.handleChange} />
@@ -68,7 +66,8 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
   isAuthenticated: state.admin.authentication.isAuthenticated,
-  isAuthenticating: state.admin.authentication.isAuthenticating
+  isAuthenticating: state.admin.authentication.isAuthenticating,
+  errorMessage: state.admin.authentication.errorMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,5 +1,7 @@
 import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
 
+import API from '../../utils/API'
+
 export function loginStart() {
   return { type: LOGIN_START }
 }
@@ -11,10 +13,10 @@ export function loginComplete(user) {
   }
 }
 
-export function loginError(errors) {
+export function loginError(error) {
   return {
     type: LOGIN_ERROR,
-    payload: errors
+    payload: error
   }
 }
 
@@ -26,10 +28,21 @@ export function doLogin(login, password) {
   return function(dispatch) {
     dispatch(loginStart());
 
-    setTimeout(function() {
-        dispatch(loginComplete({
-          token: 'anytokenhere'
-        }));
-    }, 3000)
+    var api = new API()
+
+    return api.fetch('users/search/findByLoginAndPassword?login='+login+'&password='+password)
+        .then(response => {
+          console.log('success', response)
+          dispatch(loginComplete({
+            token: response.token
+          }));
+        })
+        .catch(error => {
+          if(error.message.length === 0) {
+            error.message = 'You have entered an invalid username or password'
+          }
+
+          dispatch(loginError(error))
+        })
   }
 }
