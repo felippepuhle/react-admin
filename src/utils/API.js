@@ -25,23 +25,31 @@ class API {
   }
 
   fetch(uri, options) {
+    var parseResponse = function(response) {
+      return response.json()
+    }
+
     var checkResponseStatus = function(response) {
       if (!response.ok) {
-        var error = new Error(response.statusText)
-        error.number = response.status
-        throw error
+        return parseResponse(response).then(function(jsonResponse) {
+          var errorMessage = response.statusText
+          if(errorMessage.length === 0 &&
+              typeof jsonResponse.message !== typeof undefined) {
+            errorMessage = jsonResponse.message
+          }
+
+          var error = new Error(errorMessage)
+          error.number = response.status
+          throw error
+        })
       }
 
       return response
     }
 
-    var parseJSON = function(response) {
-      return response.json()
-    }
-
     return fetch(this.urlFor(uri), this.generateOptions(options))
         .then(checkResponseStatus)
-        .then(parseJSON)
+        .then(parseResponse)
   }
 }
 

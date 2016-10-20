@@ -49,8 +49,7 @@ class Login extends Component {
   render() {
     return (
       <Form horizontal onSubmit={this.handleFormSubmit}>
-        {this.props.isAuthenticating ? <Alert bsStyle="info">Loading...</Alert> : '' }
-        {this.props.errorMessage ? <Alert bsStyle="danger">{this.props.errorMessage}</Alert> : '' }
+        {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
 
         <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
         <FormInput id="password" name="password" label="Password" type="password" onChange={this.handleChange} />
@@ -67,11 +66,11 @@ const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
   isAuthenticated: state.admin.authentication.isAuthenticated,
   isAuthenticating: state.admin.authentication.isAuthenticating,
-  errorMessage: state.admin.authentication.errorMessage
+  message: state.admin.authentication.message
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(actionCreators, dispatch)
+  actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

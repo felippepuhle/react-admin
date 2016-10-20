@@ -26,6 +26,7 @@ function Authenticated(Component) {
 
   const mapStateToProps = (state) => ({
         token: state.admin.authentication.token,
+        user: state.admin.authentication.user,
         isAuthenticated: state.admin.authentication.isAuthenticated
   })
 

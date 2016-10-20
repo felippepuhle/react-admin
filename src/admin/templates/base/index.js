@@ -10,7 +10,7 @@ class Base extends Component {
   render() {
   	return (
       <div>
-        <Header/>
+        <Header />
 
         <Grid>
           <Row>

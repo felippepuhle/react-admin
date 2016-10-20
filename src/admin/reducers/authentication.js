@@ -1,10 +1,13 @@
 import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
 
+import jwtDecode from 'jwt-decode';
+
 const initialState = {
   token: null,
+  user: null,
   isAuthenticated: false,
   isAuthenticating: false,
-  errorMessage: null
+  message: null
 }
 
 function authentication(state = initialState, action) {
@@ -12,30 +15,43 @@ function authentication(state = initialState, action) {
     case LOGIN_START:
       return Object.assign({}, state, {
         isAuthenticating: true,
-        errorMessage: null
+        message: {
+          type: 'info',
+          text: 'Loading...'
+        }
       })
 
     case LOGIN_COMPLETE:
       return Object.assign({}, state, {
         token: action.payload.token,
+        user: {
+          name: jwtDecode(action.payload.token).sub
+        },
         isAuthenticated: true,
         isAuthenticating: false,
-        errorMessage: null
+        message: null
       })
 
     case LOGIN_ERROR:
       return Object.assign({}, state, {
         isAuthenticated: false,
         isAuthenticating: false,
-        errorMessage: action.payload.message
+        message: {
+          type: 'danger',
+          text: action.payload.message
+        }
       })
 
     case LOGOUT:
       return Object.assign({}, state, {
         token: null,
+        user: null,
         isAuthenticated: false,
         isAuthenticating: false,
-        errorMessage: null
+        message: {
+          type: 'success',
+          text: 'You have been successfully logged out'
+        }
       })
 
     default:

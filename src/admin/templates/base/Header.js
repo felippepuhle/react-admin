@@ -1,9 +1,28 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { browserHistory } from 'react-router'
+
+import { Link } from 'react-router'
+import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
+
+import * as actionCreators from '../../actions/authentication'
 
 class Header extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  handleLogout(evt) {
+    evt.preventDefault()
+    this.props.actions.doLogout()
+    browserHistory.push('admin/login')
+  }
 
   render() {
   	return (
@@ -16,20 +35,12 @@ class Header extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav>
-              <NavItem eventKey={1} href="#">Link</NavItem>
-              <NavItem eventKey={2} href="#">Link</NavItem>
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>Action</MenuItem>
-                <MenuItem eventKey={3.2}>Another action</MenuItem>
-                <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey={3.3}>Separated link</MenuItem>
-              </NavDropdown>
-            </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} href="#">Link Right</NavItem>
-              <NavItem eventKey={2} href="#">Link Right</NavItem>
+              <NavDropdown eventKey={1} title={this.props.user.name} id="basic-nav-dropdown">
+                <MenuItem eventKey={1.1}>Profile</MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey={1.3} onClick={this.handleLogout}>Logout</MenuItem>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -39,4 +50,12 @@ class Header extends Component {
 
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  user: state.admin.authentication.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

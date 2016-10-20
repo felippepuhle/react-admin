@@ -6,10 +6,12 @@ export function loginStart() {
   return { type: LOGIN_START }
 }
 
-export function loginComplete(user) {
+export function loginComplete(token) {
   return {
     type: LOGIN_COMPLETE,
-    payload: user
+    payload: {
+      token: token
+    }
   }
 }
 
@@ -21,7 +23,9 @@ export function loginError(error) {
 }
 
 export function logout() {
-  return { type: LOGOUT };
+  return {
+    type: LOGOUT
+  }
 }
 
 export function doLogin(login, password) {
@@ -30,19 +34,21 @@ export function doLogin(login, password) {
 
     var api = new API()
 
-    return api.fetch('users/search/findByLoginAndPassword?login='+login+'&password='+password)
-        .then(response => {
-          console.log('success', response)
-          dispatch(loginComplete({
-            token: response.token
-          }));
-        })
-        .catch(error => {
-          if(error.message.length === 0) {
-            error.message = 'You have entered an invalid username or password'
-          }
+    return api.fetch('admin/login', {
+        method: 'POST',
+        body: JSON.stringify({login: login, password: password})
+      })
+      .then(response => {
+        dispatch(loginComplete(response.token))
+      })
+      .catch(error => {
+        dispatch(loginError(error))
+      })
+  }
+}
 
-          dispatch(loginError(error))
-        })
+export function doLogout() {
+  return function(dispatch) {
+    dispatch(logout());
   }
 }
