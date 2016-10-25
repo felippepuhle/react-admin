@@ -13,7 +13,7 @@ function Authenticated(Component) {
 
     componentWillMount () {
       if(!this.props.isAuthenticated) {
-        var token = localStorage.getItem('token');
+        var token = localStorage.getItem('token')
         if(token !== null) {
           return this.props.actions.loginComplete(token)
         }
