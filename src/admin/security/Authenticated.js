@@ -1,6 +1,11 @@
 import React from 'react'
+
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import { browserHistory } from 'react-router'
+
+import * as actionCreators from '../actions/authentication'
 
 function Authenticated(Component) {
 
@@ -8,6 +13,11 @@ function Authenticated(Component) {
 
     componentWillMount () {
       if(!this.props.isAuthenticated) {
+        var token = localStorage.getItem('token');
+        if(token !== null) {
+          return this.props.actions.loginComplete(token)
+        }
+
         return browserHistory.push('/admin/login?redirect=' + this.props.location.pathname)
       }
     }
@@ -30,7 +40,11 @@ function Authenticated(Component) {
         isAuthenticated: state.admin.authentication.isAuthenticated
   })
 
-  return connect(mapStateToProps)(AuthenticatedComponent)
+  const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+  })
+
+  return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent)
 
 }
 

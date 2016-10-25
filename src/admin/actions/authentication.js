@@ -7,6 +7,8 @@ export function loginStart() {
 }
 
 export function loginComplete(token) {
+  localStorage.setItem('token', token);
+
   return {
     type: LOGIN_COMPLETE,
     payload: {
@@ -16,6 +18,8 @@ export function loginComplete(token) {
 }
 
 export function loginError(error) {
+  localStorage.removeItem('token');
+
   return {
     type: LOGIN_ERROR,
     payload: error
@@ -23,6 +27,8 @@ export function loginError(error) {
 }
 
 export function logout() {
+  localStorage.removeItem('token');
+  
   return {
     type: LOGOUT
   }

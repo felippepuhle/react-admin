@@ -21,7 +21,6 @@ class Header extends Component {
   handleLogout(evt) {
     evt.preventDefault()
     this.props.actions.doLogout()
-    browserHistory.push('admin/login')
   }
 
   render() {
