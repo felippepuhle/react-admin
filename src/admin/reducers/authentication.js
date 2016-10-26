@@ -24,9 +24,7 @@ function authentication(state = initialState, action) {
     case LOGIN_COMPLETE:
       return Object.assign({}, state, {
         token: action.payload.token,
-        user: {
-          name: jwtDecode(action.payload.token).sub
-        },
+        user: jwtDecode(action.payload.token).user,
         isAuthenticated: true,
         isAuthenticating: false,
         message: null
