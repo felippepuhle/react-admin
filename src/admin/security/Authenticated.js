@@ -11,15 +11,23 @@ function Authenticated(Component) {
 
   class AuthenticatedComponent extends Component {
 
-    componentWillMount () {
-      if(!this.props.isAuthenticated) {
+    checkAuthentication (props) {
+      if(!props.isAuthenticated) {
         var token = localStorage.getItem('token')
         if(token !== null) {
-          return this.props.actions.loginComplete(token)
+          return props.actions.loginComplete(token)
         }
 
-        return browserHistory.push('/admin/login?redirect=' + this.props.location.pathname)
+        return browserHistory.push('/admin/login?redirect=' + props.location.pathname)
       }
+    }
+
+    componentWillMount () {
+      this.checkAuthentication(this.props)
+    }
+
+    componentWillReceiveProps (nextProps) {
+      this.checkAuthentication(nextProps)
     }
 
     render() {
