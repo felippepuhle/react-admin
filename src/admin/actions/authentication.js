@@ -28,7 +28,7 @@ export function loginError(error) {
 
 export function logout() {
   localStorage.removeItem('token');
-  
+
   return {
     type: LOGOUT
   }
@@ -38,9 +38,7 @@ export function doLogin(login, password) {
   return function(dispatch) {
     dispatch(loginStart());
 
-    var api = new API()
-
-    return api.post('admin/login', {login: login, password: password})
+    return API.post('admin/login', {login: login, password: password})
       .then(response => {
         dispatch(loginComplete(response.token))
       })

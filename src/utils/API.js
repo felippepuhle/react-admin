@@ -1,32 +1,28 @@
 class API {
 
-  urlFor(uri) {
-    var url = 'http://localhost:8080';
+  static fetch(uri, options) {
+    var urlFor = function (uri) {
+      var url = 'http://localhost:8080';
 
-    if(uri.substr(0, 1) !== '/') {
-        url += '/';
-    }
-
-    url += uri;
-
-    return url;
-  }
-
-  generateOptions(custom) {
-    var options = {
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+      if(uri.substr(0, 1) !== '/') {
+          url += '/';
       }
+
+      url += uri;
+
+      return url;
     }
 
-    return Object.assign({}, options, custom)
-  }
+    var generateOptions = function (custom) {
+      var options = {
+        credentials: 'include',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
 
-  fetch(uri, options) {
-    var parseResponse = function(response) {
-      return response.json()
+      return Object.assign({}, options, custom)
     }
 
     var checkResponseStatus = function(response) {
@@ -39,19 +35,23 @@ class API {
       return response
     }
 
-    return fetch(this.urlFor(uri), this.generateOptions(options))
+    var parseResponse = function(response) {
+      return response.json()
+    }
+
+    return fetch(urlFor(uri), generateOptions(options))
         .then(checkResponseStatus)
         .then(parseResponse)
   }
 
-  get(uri, options) {
+  static get(uri, options) {
     return this.fetch(uri, Object.assign({}, options, {
         method: 'GET'
       })
     )
   }
 
-  post(uri, data, options) {
+  static post(uri, data, options) {
     return this.fetch(uri, Object.assign({}, options, {
         method: 'POST',
         body: JSON.stringify(data)

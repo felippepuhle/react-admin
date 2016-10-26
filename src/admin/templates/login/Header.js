@@ -13,7 +13,6 @@ class Header extends Component {
             <Navbar.Brand>
               <Link to="/">React-Admin</Link>
             </Navbar.Brand>
-            <Navbar.Toggle />
           </Navbar.Header>
         </Navbar>
       </header>
