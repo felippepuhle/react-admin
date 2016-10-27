@@ -1,13 +1,21 @@
 import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
 
+import cookie from 'react-cookie'
+
 import API from '../../utils/API'
 
 export function loginStart() {
   return { type: LOGIN_START }
 }
 
-export function loginComplete(token) {
-  localStorage.setItem('token', token);
+export function loginComplete(token, remember) {
+  var cookieOptions = {}
+  if (remember) {
+    var aYear = 60 * 24 * 365
+    cookieOptions.maxAge = aYear
+  }
+
+  cookie.save('token', token, cookieOptions)
 
   return {
     type: LOGIN_COMPLETE,
@@ -18,7 +26,7 @@ export function loginComplete(token) {
 }
 
 export function loginError(error) {
-  localStorage.removeItem('token');
+  cookie.remove('token')
 
   return {
     type: LOGIN_ERROR,
@@ -27,20 +35,20 @@ export function loginError(error) {
 }
 
 export function logout() {
-  localStorage.removeItem('token');
+  cookie.remove('token')
 
   return {
     type: LOGOUT
   }
 }
 
-export function doLogin(login, password) {
+export function doLogin(login, password, remember) {
   return function(dispatch) {
     dispatch(loginStart());
 
     return API.post('admin/login', {login: login, password: password})
       .then(response => {
-        dispatch(loginComplete(response.token))
+        dispatch(loginComplete(response.token, remember))
       })
       .catch(error => {
         dispatch(loginError(error))

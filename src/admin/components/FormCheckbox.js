@@ -8,7 +8,7 @@ class FormCheckbox extends Component {
     return (
       <FormGroup>
         <Col smOffset={2} sm={10}>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox {...this.props}>{this.props.label}</Checkbox>
         </Col>
       </FormGroup>
     )

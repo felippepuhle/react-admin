@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 
 import { browserHistory } from 'react-router'
 
+import cookie from 'react-cookie'
+
 import * as actionCreators from '../actions/authentication'
 
 function Authenticated(Component) {
@@ -13,8 +15,8 @@ function Authenticated(Component) {
 
     checkAuthentication (props) {
       if(!props.isAuthenticated) {
-        var token = localStorage.getItem('token')
-        if(token !== null) {
+        var token = cookie.load('token')
+        if(typeof token !== typeof undefined) {
           return props.actions.loginComplete(token)
         }
 

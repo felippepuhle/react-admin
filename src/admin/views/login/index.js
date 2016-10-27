@@ -20,7 +20,8 @@ class Login extends Component {
 
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      remember: false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -36,14 +37,14 @@ class Login extends Component {
 
   handleChange(event) {
     var newValue = {}
-    newValue[event.target.name] = event.target.value
+    newValue[event.target.name] = (event.target.type === 'checkbox') ? event.target.checked : event.target.value
 
     this.setState(newValue)
   }
 
   handleFormSubmit(evt) {
     evt.preventDefault()
-    this.props.actions.doLogin(this.state.login, this.state.password)
+    this.props.actions.doLogin(this.state.login, this.state.password, this.state.remember)
   }
 
   render() {
@@ -53,7 +54,7 @@ class Login extends Component {
 
         <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
         <FormInput id="password" name="password" label="Password" type="password" onChange={this.handleChange} />
-        <FormCheckbox />
+        <FormCheckbox id="remember" name="remember" label="Remember me" defaultChecked={this.state.remember} onChange={this.handleChange} />
 
         <FormSubmit/>
       </Form>
