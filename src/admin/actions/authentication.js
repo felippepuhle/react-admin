@@ -9,7 +9,8 @@ export function loginStart() {
 }
 
 export function loginComplete(token, remember) {
-  var cookieOptions = {}
+  var cookieOptions = { path: '/' }
+
   if (remember) {
     var aYear = 60 * 24 * 365
     cookieOptions.maxAge = aYear
@@ -26,7 +27,7 @@ export function loginComplete(token, remember) {
 }
 
 export function loginError(error) {
-  cookie.remove('token')
+  cookie.remove('token', { path: '/' })
 
   return {
     type: LOGIN_ERROR,
@@ -35,7 +36,7 @@ export function loginError(error) {
 }
 
 export function logout() {
-  cookie.remove('token')
+  cookie.remove('token', { path: '/' })
 
   return {
     type: LOGOUT
