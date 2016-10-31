@@ -5,13 +5,23 @@ import { FormGroup, FormControl, ControlLabel, Col } from 'react-bootstrap'
 class FormInput extends Component {
 
   render() {
+    const { type, input, meta } = this.props;
+
+    var validationState = null
+    if (meta.error) {
+      validationState = 'error'
+    }
+    if (!meta.error && input.touched) {
+      validationState = 'success'
+    }
+
     return (
-      <FormGroup controlId={this.props.id}>
+      <FormGroup controlId={input.name} validationState={validationState}>
         <Col componentClass={ControlLabel} sm={2}>
-          {this.props.label}
+          {this.props.children}
         </Col>
         <Col sm={10}>
-          <FormControl {...this.props} />
+          <FormControl type={type} {...input} />
         </Col>
       </FormGroup>
     )

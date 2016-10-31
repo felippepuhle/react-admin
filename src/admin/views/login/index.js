@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 
 import { browserHistory } from 'react-router'
 
@@ -24,7 +25,6 @@ class Login extends Component {
       remember: false
     }
 
-    this.handleChange = this.handleChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
@@ -33,13 +33,6 @@ class Login extends Component {
       let redirect = nextProps.location.query.redirect || '/admin'
       browserHistory.push(redirect)
     }
-  }
-
-  handleChange(event) {
-    var newValue = {}
-    newValue[event.target.name] = (event.target.type === 'checkbox') ? event.target.checked : event.target.value
-
-    this.setState(newValue)
   }
 
   handleFormSubmit(evt) {
@@ -52,16 +45,21 @@ class Login extends Component {
       <Form horizontal onSubmit={this.handleFormSubmit}>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
 
-        <FormInput id="login" name="login" label="Login" type="text" onChange={this.handleChange} />
-        <FormInput id="password" name="password" label="Password" type="password" onChange={this.handleChange} />
+        <Field name="login" type="text" component={FormInput}>Login</Field>
+        <Field name="password" type="password" component={FormInput}>Password</Field>
+
         <FormCheckbox id="remember" name="remember" label="Remember me" defaultChecked={this.state.remember} onChange={this.handleChange} />
 
-        <FormSubmit/>
+        <FormSubmit />
       </Form>
     )
   }
 
 }
+
+Login = reduxForm({
+  form: 'login'
+})(Login)
 
 const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
