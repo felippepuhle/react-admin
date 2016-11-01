@@ -2,30 +2,21 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
 
 import { browserHistory } from 'react-router'
 
 import * as actionCreators from '../../actions/authentication'
 
-import { Form, Alert } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 
-import FormInput from '../../components/FormInput'
-import FormCheckbox from '../../components/FormCheckbox'
-import FormSubmit from '../../components/FormSubmit'
+import LoginForm from './LoginForm'
 
 class Login extends Component {
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      login: '',
-      password: '',
-      remember: false
-    }
-
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -35,31 +26,20 @@ class Login extends Component {
     }
   }
 
-  handleFormSubmit(evt) {
-    evt.preventDefault()
-    this.props.actions.doLogin(this.state.login, this.state.password, this.state.remember)
+  handleSubmit(values) {
+    this.props.actions.doLogin(values.login, values.password, values.remember)
   }
 
   render() {
     return (
-      <Form horizontal onSubmit={this.handleFormSubmit}>
+      <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-
-        <Field name="login" type="text" component={FormInput}>Login</Field>
-        <Field name="password" type="password" component={FormInput}>Password</Field>
-
-        <FormCheckbox id="remember" name="remember" label="Remember me" defaultChecked={this.state.remember} onChange={this.handleChange} />
-
-        <FormSubmit />
-      </Form>
+        <LoginForm onSubmit={this.handleSubmit} />
+      </div>
     )
   }
 
 }
-
-Login = reduxForm({
-  form: 'login'
-})(Login)
 
 const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
