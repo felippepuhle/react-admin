@@ -8,6 +8,8 @@ import FormInput from '../../components/FormInput'
 import FormCheckbox from '../../components/FormCheckbox'
 import FormSubmit from '../../components/FormSubmit'
 
+import Validation from '../../../utils/Validation'
+
 class LoginForm extends Component {
 
   render() {
@@ -24,8 +26,14 @@ class LoginForm extends Component {
 
 }
 
+const validate = new Validation({
+    login: [Validation.required],
+    password: [Validation.required]
+})
+
 LoginForm = reduxForm({
-  form: 'login'
+  form: 'login',
+  validate
 })(LoginForm)
 
 export default LoginForm
