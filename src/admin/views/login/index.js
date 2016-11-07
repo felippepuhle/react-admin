@@ -27,7 +27,7 @@ class Login extends Component {
   }
 
   handleSubmit(values) {
-    this.props.actions.doLogin(values.login, values.password, values.remember)
+    this.props.actions.login(values.login, values.password, values.remember)
   }
 
   render() {

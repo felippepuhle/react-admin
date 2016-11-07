@@ -8,8 +8,8 @@ class FormSubmit extends Component {
     return (
       <FormGroup>
         <Col smOffset={2} sm={10}>
-          <Button type="submit" disabled={this.props.isAuthenticating}>
-            {this.props.isAuthenticating ? 'Loading' : 'Sign in'}
+          <Button type="submit" disabled={this.props.loading}>
+            {this.props.loading ? 'Loading' : this.props.children}
           </Button>
         </Col>
       </FormGroup>

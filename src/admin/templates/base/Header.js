@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { Link } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 
 import * as actionCreators from '../../actions/authentication'
@@ -18,7 +18,7 @@ class Header extends Component {
 
   handleLogout(evt) {
     evt.preventDefault()
-    this.props.actions.doLogout()
+    this.props.actions.logout()
   }
 
   render() {
@@ -27,14 +27,18 @@ class Header extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">React-Admin</Link>
+                React-Admin
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
+
           <Navbar.Collapse>
             <Nav pullRight>
               <NavDropdown eventKey={1} title={this.props.user.name} id="basic-nav-dropdown">
-                <MenuItem eventKey={1.1}>Profile</MenuItem>
+                <LinkContainer to={{ pathname: '/admin/profile' }}>
+                  <MenuItem eventKey={1.1}>Profile</MenuItem>
+                </LinkContainer>
+
                 <MenuItem divider />
                 <MenuItem eventKey={1.3} onClick={this.handleLogout}>Logout</MenuItem>
               </NavDropdown>

@@ -35,7 +35,7 @@ export function loginError(error) {
   }
 }
 
-export function logout() {
+export function logoutComplete() {
   cookie.remove('token', { path: '/' })
 
   return {
@@ -43,7 +43,7 @@ export function logout() {
   }
 }
 
-export function doLogin(login, password, remember) {
+export function login(login, password, remember) {
   return function(dispatch) {
     dispatch(loginStart());
 
@@ -57,8 +57,8 @@ export function doLogin(login, password, remember) {
   }
 }
 
-export function doLogout() {
+export function logout() {
   return function(dispatch) {
-    dispatch(logout());
+    dispatch(logoutComplete());
   }
 }

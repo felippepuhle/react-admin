@@ -19,7 +19,7 @@ class LoginForm extends Component {
         <Field name="password" type="password" component={FormInput}>Password</Field>
         <Field name="remember" type="password" component={FormCheckbox}>Remember me</Field>
 
-        <FormSubmit />
+        <FormSubmit loading={this.props.submitting}>Sign in</FormSubmit>
       </Form>
     )
   }
