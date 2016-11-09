@@ -28,7 +28,10 @@ function profile(state = initialState, action) {
       return Object.assign({}, state, {
         user: jwtDecode(action.payload.token).user,
         isSubmitting: false,
-        message: null
+        message: {
+          type: 'success',
+          text: 'Profile updated successfully'
+        }
       })
 
     case PROFILE_UPDATE_ERROR:

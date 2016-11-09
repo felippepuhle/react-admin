@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
+import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT, PROFILE_UPDATE_COMPLETE } from '../constants'
 
 import jwtDecode from 'jwt-decode';
 
@@ -50,6 +50,12 @@ function authentication(state = initialState, action) {
           type: 'success',
           text: 'You have been successfully logged out'
         }
+      })
+
+    case PROFILE_UPDATE_COMPLETE:
+      return Object.assign({}, state, {
+        token: action.payload.token,
+        user: jwtDecode(action.payload.token).user
       })
 
     default:

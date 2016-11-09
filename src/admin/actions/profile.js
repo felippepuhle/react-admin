@@ -20,7 +20,7 @@ export function profileUpdateStart() {
 }
 
 export function profileUpdateComplete(token) {
-  cookie.save('token', token)
+  cookie.save('token', token, { path: '/' })
 
   return {
     type: PROFILE_UPDATE_COMPLETE,

@@ -1,3 +1,5 @@
+import cookie from 'react-cookie'
+
 class API {
 
   static fetch(uri, options) {
@@ -13,16 +15,19 @@ class API {
       return url;
     }
 
-    var generateOptions = function (custom) {
-      var options = {
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+    var generateOptions = function (options) {
+      options = options || {}
+
+      options.credentials = 'include'
+
+      options.headers = options.headers || {}
+      options.headers['Accept'] = 'application/json'
+      options.headers['Content-Type'] = 'application/json'
+      if(cookie.load('token')) {
+        options.headers['Authorization'] = 'Bearer ' + cookie.load('token')
       }
 
-      return Object.assign({}, options, custom)
+      return options
     }
 
     var checkResponseStatus = function(response) {
@@ -45,14 +50,18 @@ class API {
   }
 
   static get(uri, options) {
-    return this.fetch(uri, Object.assign({}, options, {
+    return this.fetch(
+      uri,
+      Object.assign({}, options, {
         method: 'GET'
       })
     )
   }
 
   static post(uri, data, options) {
-    return this.fetch(uri, Object.assign({}, options, {
+    return this.fetch(
+      uri,
+      Object.assign({}, options, {
         method: 'POST',
         body: JSON.stringify(data)
       })
