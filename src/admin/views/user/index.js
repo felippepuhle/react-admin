@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 
 import Content from '../../templates/base/Content'
+import DataTable from '../../components/DataTable'
 
 class User extends Component {
 
   render() {
+    let headers = [
+      { name: 'Name', prop: 'name' }
+    ]
+
     return (
       <Content {...this.props}>
-        Table
+        <DataTable headers={headers} url="users" />
       </Content>
     )
   }
