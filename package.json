@@ -6,6 +6,7 @@
     "react-scripts": "0.6.1"
   },
   "dependencies": {
+    "jwt-decode": "^2.1.0",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-cookie": "^0.4.8",
