@@ -81,7 +81,7 @@ class DataTable extends Component {
     return (
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-        <table>
+        <table className="table">
           { this.renderHeaders() }
           { this.renderBody() }
         </table>

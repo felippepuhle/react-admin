@@ -18,8 +18,11 @@ function authentication(state = initialState, action) {
 
     case DATATABLE_COMPLETE:
       return Object.assign({}, state, {
-        data: action.payload._embedded[Object.keys(action.payload._embedded)],
-        paginator: action.payload.page,
+        data: action.payload.content,
+        paginator: {
+          number: action.payload.number,
+          totalPages: action.payload.totalPages
+        },
         message: null
       })
 

@@ -12,7 +12,7 @@ class User extends Component {
 
     return (
       <Content {...this.props}>
-        <DataTable headers={headers} url="users" />
+        <DataTable headers={headers} url="admin/users" />
       </Content>
     )
   }
