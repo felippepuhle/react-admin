@@ -1,9 +1,9 @@
-import { DATATABLE_START, DATATABLE_COMPLETE, DATATABLE_ERROR } from '../constants'
+import { DATATABLE_LOADING, DATATABLE_COMPLETE, DATATABLE_ERROR } from './constants'
 
 import API from '../../utils/API'
 
-  export function datatableStart() {
-  return { type: DATATABLE_START }
+  export function datatableLoading() {
+  return { type: DATATABLE_LOADING }
 }
 
 export function datatableComplete(data) {
@@ -20,11 +20,11 @@ export function datatableError(error) {
   }
 }
 
-export function get(url, page = 0, size = 20) {
+export function get(url, page = 1, search = null) {
   return function(dispatch) {
-    dispatch(datatableStart());
+    dispatch(datatableLoading());
 
-    return API.get(url + '?page=' + (page) + '&size=' + size)
+    return API.get(url + '?page=' + (page-1))
       .then(response => {
         dispatch(datatableComplete(response))
       })

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
 import Content from '../../templates/base/Content'
-import DataTable from '../../components/DataTable'
+import DataTable from '../../datatable'
 
 class User extends Component {
 
   render() {
     let headers = [
-      { name: 'Name', prop: 'name' }
+      { name: 'Name', prop: 'name', searchable: true }
     ]
 
     return (
