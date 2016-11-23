@@ -18,7 +18,7 @@ class Cookie {
   }
 
   static load(key) {
-    return cookie.load('token')
+    return cookie.load(key)
   }
 
 }
