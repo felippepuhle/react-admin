@@ -4,97 +4,31 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import * as actionCreators from './actions'
+import DataTableHeader from './DataTableHeader'
+import DataTableBody from './DataTableBody'
+import DataTablePaginator from './DataTablePaginator'
 
-import { Alert, FormControl, Pagination } from 'react-bootstrap'
+import { Alert, FormControl } from 'react-bootstrap'
 
 class DataTable extends Component {
 
   constructor(props) {
     super(props)
 
-    this.renderBody = this.renderBody.bind(this)
-    this.get = this.get.bind(this)
     this.onChangeSearch = this.onChangeSearch.bind(this)
-    this.search = this.search.bind(this)
+    this.onChangePage = this.onChangePage.bind(this)
   }
 
-  componentWillMount () {
-    this.get(1)
-  }
-
-  getPage(page = 1) {
-    this.get(page)
+  componentDidMount () {
+    this.props.actions.init(this.props.headers, this.props.url)
   }
 
   onChangeSearch(event) {
-    this.search(event.target.value)
+    this.props.actions.search(this.props.headers, this.props.url, this.props.paginator.number, event.target.value)
   }
 
-  search(value) {
-    if (!this.props.isLoading) {
-      this.get(this.props.paginator.number, value)
-    } else {
-      setTimeout(function() {
-        this.search(value)
-      }.bind(this), 100)
-    }
-  }
-
-  get(page, search = null) {
-    this.props.actions.get(this.props.headers, this.props.url, page, search)
-  }
-
-  renderHeaders() {
-    return (
-      <thead>
-        <tr>
-          {
-            this.props.headers.map(function(result, index) {
-              return (<th key={index}>{result.name}</th>)
-            })
-          }
-        </tr>
-      </thead>
-    )
-  }
-
-  renderBody() {
-    return (
-      <tbody>
-        {
-          this.props.data.map(function(dataResult, dataIndex) {
-            return (
-              <tr key={dataIndex}>
-                {
-                  this.props.headers.map(function(headerResult, headerIndex) {
-                    return <td key={headerIndex}>{dataResult[headerResult.property]}</td>
-                  })
-                }
-              </tr>
-            )
-          }.bind(this))
-        }
-      </tbody>
-    )
-  }
-
-  renderPaginator() {
-    if(!this.props.paginator) {
-      return null
-    }
-
-    return (
-      <Pagination
-        prev
-        next
-        first
-        last
-        ellipsis={false}
-        items={this.props.paginator.totalPages}
-        maxButtons={5}
-        activePage={this.props.paginator.number}
-        onSelect={this.get} />
-    )
+  onChangePage(page) {
+    this.props.actions.paginate(this.props.headers, this.props.url, page, this.props.search)
   }
 
   render() {
@@ -102,14 +36,14 @@ class DataTable extends Component {
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
 
-        <FormControl type="text" placeholder="Search" onChange={this.onChangeSearch}/>
+        <FormControl type="text" placeholder="Search" onChange={this.onChangeSearch} value={this.props.search}/>
 
         <table className="table">
-          { this.renderHeaders() }
-          { this.renderBody() }
+          <DataTableHeader columns={this.props.headers} />
+          <DataTableBody columns={this.props.headers} data={this.props.data} />
         </table>
 
-        { this.renderPaginator() }
+        <DataTablePaginator paginator={this.props.paginator} onSelect={this.onChangePage} />
       </div>
     )
   }
@@ -125,7 +59,8 @@ const mapStateToProps = (state) => ({
   isLoading: state.admin.datatable.isLoading,
   data: state.admin.datatable.data,
   paginator: state.admin.datatable.paginator,
-  message: state.admin.datatable.message
+  message: state.admin.datatable.message,
+  search: state.admin.datatable.search
 })
 
 const mapDispatchToProps = (dispatch) => ({
