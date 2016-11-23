@@ -1,4 +1,4 @@
-import cookie from 'react-cookie'
+import Cookie from './Cookie'
 
 class API {
 
@@ -23,8 +23,8 @@ class API {
       options.headers = options.headers || {}
       options.headers['Accept'] = 'application/json'
       options.headers['Content-Type'] = 'application/json'
-      if(cookie.load('token')) {
-        options.headers['Authorization'] = 'Bearer ' + cookie.load('token')
+      if(Cookie.load('token')) {
+        options.headers['Authorization'] = 'Bearer ' + Cookie.load('token')
       }
 
       return options

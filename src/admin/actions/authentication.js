@@ -1,7 +1,6 @@
 import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
 
-import cookie from 'react-cookie'
-
+import Cookie from '../../utils/Cookie'
 import API from '../../utils/API'
 
 export function loginStart() {
@@ -9,14 +8,7 @@ export function loginStart() {
 }
 
 export function loginComplete(token, remember) {
-  var cookieOptions = { path: '/' }
-
-  if (remember) {
-    var aYear = 60 * 24 * 365
-    cookieOptions.maxAge = aYear
-  }
-
-  cookie.save('token', token, cookieOptions)
+  Cookie.save('token', token, remember)
 
   return {
     type: LOGIN_COMPLETE,
@@ -27,7 +19,7 @@ export function loginComplete(token, remember) {
 }
 
 export function loginError(error) {
-  cookie.remove('token', { path: '/' })
+  Cookie.remove('token')
 
   return {
     type: LOGIN_ERROR,
@@ -36,7 +28,7 @@ export function loginError(error) {
 }
 
 export function logoutComplete() {
-  cookie.remove('token', { path: '/' })
+  Cookie.remove('token')
 
   return {
     type: LOGOUT
