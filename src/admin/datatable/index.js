@@ -41,7 +41,7 @@ class DataTable extends Component {
   }
 
   get(page, search = null) {
-    this.props.actions.get(this.props.url, page, search)
+    this.props.actions.get(this.props.headers, this.props.url, page, search)
   }
 
   renderHeaders() {
@@ -67,7 +67,7 @@ class DataTable extends Component {
               <tr key={dataIndex}>
                 {
                   this.props.headers.map(function(headerResult, headerIndex) {
-                    return <td key={headerIndex}>{dataResult[headerResult.prop]}</td>
+                    return <td key={headerIndex}>{dataResult[headerResult.property]}</td>
                   })
                 }
               </tr>

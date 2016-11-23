@@ -20,11 +20,14 @@ export function datatableError(error) {
   }
 }
 
-export function get(url, page = 1, search = null) {
+export function get(headers, url, page = 1, search = null) {
   return function(dispatch) {
     dispatch(datatableLoading());
 
-    return API.get(url + '?page=' + (page-1))
+    let fullUrl = url + '?page=' + (page-1)
+    let data = Object.assign({}, { headers: [], search: null }, { headers: headers, search: search })
+
+    return API.post(fullUrl, data)
       .then(response => {
         dispatch(datatableComplete(response))
       })
