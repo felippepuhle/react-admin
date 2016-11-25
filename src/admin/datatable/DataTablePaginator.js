@@ -5,7 +5,7 @@ import { Pagination } from 'react-bootstrap'
 class DataTablePaginator extends Component {
 
   render() {
-    if(!this.props.paginator) {
+    if(!this.props.paginator || this.props.paginator.totalPages < 1) {
       return null
     }
 
