@@ -78,12 +78,16 @@ export function paginate(headers, url, page, search) {
   }
 }
 
+var searchTimeout;
 export function search(headers, url, page, search) {
   return function(dispatch) {
-    Cookie.save(url + '/search', search)
-
     dispatch(datatableSearch(search))
 
-    dispatch(getData(headers, url, page, search))
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+      Cookie.save(url + '/search', search)
+      
+      dispatch(getData(headers, url, page, search))
+    }, 500);
   }
 }

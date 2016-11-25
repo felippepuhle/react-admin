@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import * as actionCreators from './actions'
+import DataTableSearch from './DataTableSearch'
 import DataTableHeader from './DataTableHeader'
 import DataTableBody from './DataTableBody'
 import DataTablePaginator from './DataTablePaginator'
 
-import { Alert, FormControl } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 
 class DataTable extends Component {
 
@@ -36,7 +37,7 @@ class DataTable extends Component {
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
 
-        <FormControl type="text" placeholder="Search" onChange={this.onChangeSearch} value={this.props.search}/>
+        <DataTableSearch onChange={this.onChangeSearch} value={this.props.search}/>
 
         <table className="table">
           <DataTableHeader columns={this.props.headers} />
