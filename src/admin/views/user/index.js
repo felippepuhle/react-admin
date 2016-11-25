@@ -7,7 +7,8 @@ class User extends Component {
 
   render() {
     let headers = [
-      { property: 'name', name: 'Name', searchable: true }
+      { property: 'name', name: 'Name', searchable: true },
+      { property: 'group.name', name: 'Group', searchable: true }
     ]
 
     return (
