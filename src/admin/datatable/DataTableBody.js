@@ -3,6 +3,16 @@ import React, { Component } from 'react'
 class DataTableBody extends Component {
 
   render() {
+    if(this.props.data < 1) {
+      return (
+        <tbody>
+          <tr>
+            <td colSpan={this.props.columns.length}>No records found.</td>
+          </tr>
+        </tbody>
+      )
+    }
+
     return (
       <tbody>
         {
