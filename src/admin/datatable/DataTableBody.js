@@ -23,7 +23,11 @@ class DataTableBody extends Component {
               <tr key={dataIndex}>
                 {
                   this.props.columns.map(function(headerResult, headerIndex) {
-                    return <td key={headerIndex}>{Lodash.get(dataResult, headerResult.property)}</td>
+                    return (
+                      <td key={headerIndex}>
+                        {headerResult.callback ? headerResult.callback(dataResult) : Lodash.get(dataResult, headerResult.property)}
+                      </td>
+                    )
                   })
                 }
               </tr>
