@@ -15,6 +15,9 @@ import AdminLoginPage from '../admin/views/login'
 // Admin - Authentication
 import Authenticated from '../admin/security/Authenticated'
 
+// Not Found
+import NotFoundPage from '../views/NotFound'
+
 export default (
   <Route>
     <Redirect from="/" to="/admin" />
@@ -31,5 +34,7 @@ export default (
         <Route name="admin.login" path="/admin/login" component={AdminLoginPage} />
       </Route>
     </Route>
+
+    <Route path="*" component={NotFoundPage}/>
   </Route>
 )
