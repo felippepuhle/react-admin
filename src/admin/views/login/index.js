@@ -9,7 +9,7 @@ import * as actionCreators from '../../actions/authentication'
 
 import { Alert } from 'react-bootstrap'
 
-import LoginForm from './LoginForm'
+import Form from './Form'
 
 class Login extends Component {
 
@@ -34,7 +34,7 @@ class Login extends Component {
     return (
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-        <LoginForm onSubmit={this.handleSubmit} />
+        <Form onSubmit={this.handleSubmit} />
       </div>
     )
   }

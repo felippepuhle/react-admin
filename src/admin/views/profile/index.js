@@ -7,7 +7,7 @@ import * as actionCreators from '../../actions/profile'
 
 import { Alert } from 'react-bootstrap'
 
-import ProfileForm from './ProfileForm'
+import Form from './Form'
 
 class Profile extends Component {
 
@@ -29,7 +29,7 @@ class Profile extends Component {
     return (
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-        <ProfileForm initialValues={this.props.user} onSubmit={this.handleSubmit} />
+        <Form initialValues={this.props.user} onSubmit={this.handleSubmit} />
       </div>
     )
   }
