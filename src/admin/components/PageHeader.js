@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import { PageHeader } from 'react-bootstrap'
+import * as Bootstrap from 'react-bootstrap'
 
-class CustomPageHeader extends Component {
+class PageHeader extends Component {
 
   render() {
     if(!this.props.title && !this.props.subtitle) {
@@ -10,16 +10,16 @@ class CustomPageHeader extends Component {
     }
 
     return (
-      <PageHeader>
+      <Bootstrap.PageHeader>
         {this.props.title} <small>{this.props.subtitle}</small>
-      </PageHeader>
+      </Bootstrap.PageHeader>
     )
   }
 
 }
 
-CustomPageHeader.propTypes = {
+PageHeader.propTypes = {
   title: React.PropTypes.string
 }
 
-export default CustomPageHeader
+export default PageHeader

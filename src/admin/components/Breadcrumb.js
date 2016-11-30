@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import { Breadcrumb } from 'react-bootstrap'
+import * as Bootstrap from 'react-bootstrap'
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 
-class CustomBreadcrumb extends Component {
+class Breadcrumb extends Component {
 
   render() {
     if(this.props.items.length < 1) {
@@ -16,30 +16,30 @@ class CustomBreadcrumb extends Component {
 
       return (
         <LinkContainer to={{ pathname: element.url }} key={index} active={active}>
-          <Breadcrumb.Item>
+          <Bootstrap.Breadcrumb.Item>
             {element.desc}
-          </Breadcrumb.Item>
+          </Bootstrap.Breadcrumb.Item>
         </LinkContainer>
       )
     })
 
     return (
-      <Breadcrumb>
+      <Bootstrap.Breadcrumb>
         <IndexLinkContainer to={{ pathname: '/admin' }}>
-          <Breadcrumb.Item>
+          <Bootstrap.Breadcrumb.Item>
             Home
-          </Breadcrumb.Item>
+          </Bootstrap.Breadcrumb.Item>
         </IndexLinkContainer>
 
         {items}
-      </Breadcrumb>
+      </Bootstrap.Breadcrumb>
     )
   }
 
 }
 
-CustomBreadcrumb.propTypes = {
+Breadcrumb.propTypes = {
   items: React.PropTypes.array
 }
 
-export default CustomBreadcrumb
+export default Breadcrumb

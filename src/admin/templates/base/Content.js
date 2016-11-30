@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 
-import CustomBreadcrumb from '../../components/CustomBreadcrumb'
-import CustomPageHeader from '../../components/CustomPageHeader'
+import Breadcrumb from '../../components/Breadcrumb'
+import PageHeader from '../../components/PageHeader'
 
 class Content extends Component {
 
   render() {
   	return (
       <div>
-        <CustomBreadcrumb items={this.props.breadcrumb} />
-        <CustomPageHeader title={this.props.title} />
+        <Breadcrumb items={this.props.breadcrumb} />
+        <PageHeader title={this.props.title} />
 
         {this.props.children}
       </div>
