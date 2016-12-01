@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import Content from '../../templates/base/Content'
+import Content from '../templates/base/Content'
 
-class Groups extends Component {
+class List extends Component {
 
   render() {
     return (
@@ -14,7 +14,7 @@ class Groups extends Component {
 
 }
 
-Groups.defaultProps = {
+List.defaultProps = {
   title: 'Groups',
   subtitle: 'Listing all groups',
   breadcrumb: [
@@ -23,4 +23,4 @@ Groups.defaultProps = {
   ]
 }
 
-export default Groups
+export default List

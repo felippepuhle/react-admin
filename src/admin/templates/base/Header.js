@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 
-import * as actionCreators from '../../actions/authentication'
+import * as actionCreators from '../../authentication/actions'
 
 class Header extends Component {
 

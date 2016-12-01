@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { FormGroup, Col, Button } from 'react-bootstrap'
 
-class FormSubmit extends Component {
+class Submit extends Component {
 
   render() {
     return (
@@ -18,4 +18,4 @@ class FormSubmit extends Component {
 
 }
 
-export default FormSubmit
+export default Submit

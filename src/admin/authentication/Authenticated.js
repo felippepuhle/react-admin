@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router'
 
 import cookie from 'react-cookie'
 
-import * as actionCreators from '../actions/authentication'
+import * as actionCreators from './actions'
 
 function Authenticated(Component) {
 

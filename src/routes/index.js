@@ -3,20 +3,20 @@ import { Route, Redirect } from 'react-router'
 
 // Admin - Base
 import AdminBaseTemplate from '../admin/templates/base'
-import AdminIndexPage from '../admin/views/index'
-import AdminProfilePage from '../admin/views/profile'
-import AdminGroupsPage from '../admin/views/group'
-import AdminUsersPage from '../admin/views/user'
+import AdminHomePage from '../admin/home'
+import AdminProfilePage from '../admin/authentication/Profile'
+import AdminGroupsListPage from '../admin/group/List'
+import AdminUsersListPage from '../admin/user/List'
 
 // Admin - Login
 import AdminLoginTemplate from '../admin/templates/login'
-import AdminLoginPage from '../admin/views/login'
+import AdminLoginPage from '../admin/authentication/Login'
 
-// Admin - Authentication
-import Authenticated from '../admin/security/Authenticated'
+// Admin - Authentication Middleware
+import Authenticated from '../admin/authentication/Authenticated'
 
 // Not Found
-import NotFoundPage from '../views/NotFound'
+import NotFoundPage from '../components/NotFound'
 
 export default (
   <Route>
@@ -24,10 +24,10 @@ export default (
 
     <Route name="admin">
       <Route component={Authenticated(AdminBaseTemplate)}>
-        <Route name="admin.index" path="/admin" component={AdminIndexPage} />
+        <Route name="admin.index" path="/admin" component={AdminHomePage} />
         <Route name="admin.profile" path="/admin/profile" component={AdminProfilePage} />
-        <Route name="admin.groups" path="/admin/groups" component={AdminGroupsPage} />
-        <Route name="admin.users" path="/admin/users" component={AdminUsersPage} />
+        <Route name="admin.groups" path="/admin/groups" component={AdminGroupsListPage} />
+        <Route name="admin.users" path="/admin/users" component={AdminUsersListPage} />
       </Route>
 
       <Route component={AdminLoginTemplate}>

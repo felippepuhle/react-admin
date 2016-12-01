@@ -1,4 +1,5 @@
-import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from '../constants'
+import { LOGIN_START, LOGIN_COMPLETE, LOGIN_ERROR, LOGOUT } from './constants'
+import { PROFILE_UPDATE_START, PROFILE_UPDATE_ERROR, PROFILE_UPDATE_COMPLETE } from './constants'
 
 import Cookie from '../../utils/Cookie'
 import API from '../../utils/API'
@@ -35,6 +36,28 @@ export function logoutComplete() {
   }
 }
 
+export function profileUpdateStart() {
+  return { type: PROFILE_UPDATE_START }
+}
+
+export function profileUpdateComplete(token) {
+  Cookie.save('token', token)
+
+  return {
+    type: PROFILE_UPDATE_COMPLETE,
+    payload: {
+      token: token
+    }
+  }
+}
+
+export function profileUpdateError(error) {
+  return {
+    type: PROFILE_UPDATE_ERROR,
+    payload: error
+  }
+}
+
 export function login(login, password, remember) {
   return function(dispatch) {
     dispatch(loginStart());
@@ -52,5 +75,19 @@ export function login(login, password, remember) {
 export function logout() {
   return function(dispatch) {
     dispatch(logoutComplete());
+  }
+}
+
+export function update(data) {
+  return function(dispatch) {
+    dispatch(profileUpdateStart());
+
+    return API.post('admin/profile', data)
+      .then(response => {
+        dispatch(profileUpdateComplete(response.token))
+      })
+      .catch(error => {
+        dispatch(profileUpdateError(error))
+      })
   }
 }

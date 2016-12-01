@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import Breadcrumb from '../../components/Breadcrumb'
-import PageHeader from '../../components/PageHeader'
+import Breadcrumb from '../../../components/Breadcrumb'
+import PageHeader from '../../../components/PageHeader'
 
 class Content extends Component {
 

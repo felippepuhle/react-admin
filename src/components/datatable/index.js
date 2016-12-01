@@ -57,11 +57,11 @@ DataTable.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  isLoading: state.admin.datatable.isLoading,
-  data: state.admin.datatable.data,
-  paginator: state.admin.datatable.paginator,
-  message: state.admin.datatable.message,
-  search: state.admin.datatable.search
+  isLoading: state.datatable.isLoading,
+  data: state.datatable.data,
+  paginator: state.datatable.paginator,
+  message: state.datatable.message,
+  search: state.datatable.search
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 
 import { browserHistory } from 'react-router'
 
-import * as actionCreators from '../../actions/authentication'
+import * as actionCreators from './actions'
 
 import { Alert } from 'react-bootstrap'
 
-import Form from './Form'
+import LoginForm from './LoginForm'
 
 class Login extends Component {
 
@@ -34,7 +34,7 @@ class Login extends Component {
     return (
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-        <Form onSubmit={this.handleSubmit} />
+        <LoginForm onSubmit={this.handleSubmit} />
       </div>
     )
   }
@@ -44,7 +44,6 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
   token: state.admin.authentication.token,
   isAuthenticated: state.admin.authentication.isAuthenticated,
-  isAuthenticating: state.admin.authentication.isAuthenticating,
   message: state.admin.authentication.message
 })
 

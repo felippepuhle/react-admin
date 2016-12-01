@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { FormGroup, FormControl, ControlLabel, Col, HelpBlock } from 'react-bootstrap'
 
-class FormInput extends Component {
+class Input extends Component {
 
   handleValidationState(meta) {
     if (meta.error && meta.touched) {
@@ -51,4 +51,4 @@ class FormInput extends Component {
 
 }
 
-export default FormInput
+export default Input

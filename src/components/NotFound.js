@@ -7,8 +7,6 @@ import { Grid, Button } from 'react-bootstrap'
 class NotFound extends Component {
 
   render() {
-    console.log(browserHistory)
-
     return (
       <Grid bsClass="container text-center">
         <h1>404</h1>

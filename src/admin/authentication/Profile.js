@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as actionCreators from '../../actions/profile'
+import * as actionCreators from './actions'
 
 import { Alert } from 'react-bootstrap'
 
-import Form from './Form'
+import ProfileForm from './ProfileForm'
 
 class Profile extends Component {
 
@@ -15,10 +15,6 @@ class Profile extends Component {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  componentWillMount () {
-    this.props.actions.profileUpdateRequest()
   }
 
   handleSubmit(values) {
@@ -29,7 +25,7 @@ class Profile extends Component {
     return (
       <div>
         {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
-        <Form initialValues={this.props.user} onSubmit={this.handleSubmit} />
+        <ProfileForm initialValues={this.props.user} onSubmit={this.handleSubmit} />
       </div>
     )
   }
@@ -37,8 +33,8 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.admin.profile.user,
-  message: state.admin.profile.message
+  user: state.admin.authentication.user,
+  message: state.admin.authentication.message
 })
 
 const mapDispatchToProps = (dispatch) => ({

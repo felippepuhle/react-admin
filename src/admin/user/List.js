@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { ButtonGroup, Button } from 'react-bootstrap'
 
-import Content from '../../templates/base/Content'
-import DataTable from '../../datatable'
+import Content from '../templates/base/Content'
+import DataTable from '../../components/datatable'
 
-class User extends Component {
+class List extends Component {
 
   render() {
     let headers = [
@@ -26,6 +26,12 @@ class User extends Component {
 
     return (
       <Content {...this.props}>
+        <LinkContainer to={{ pathname: '/admin/users/new' }}>
+          <Button>New</Button>
+        </LinkContainer>
+
+        <hr/>
+
         <DataTable headers={headers} url="admin/users" />
       </Content>
     )
@@ -33,7 +39,7 @@ class User extends Component {
 
 }
 
-User.defaultProps = {
+List.defaultProps = {
   title: 'Users',
   subtitle: 'Listing all users',
   breadcrumb: [
@@ -42,4 +48,4 @@ User.defaultProps = {
   ]
 }
 
-export default User
+export default List

@@ -7,12 +7,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk';
 
+import datatableReducer from './components/datatable/reducers'
 import adminReducers from './admin/reducers'
 import routes from './routes'
 
 const store = createStore(
   combineReducers({
     form: formReducer,
+    datatable: datatableReducer,
     admin: adminReducers
   }),
   applyMiddleware(thunk)

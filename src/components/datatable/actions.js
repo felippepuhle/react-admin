@@ -86,7 +86,7 @@ export function search(headers, url, page, search) {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(function() {
       Cookie.save(url + '/search', search)
-      
+
       dispatch(getData(headers, url, page, search))
     }, 500);
   }
