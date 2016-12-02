@@ -5,8 +5,7 @@ import { connect } from 'react-redux'
 
 import * as actionCreators from './actions'
 
-import { Alert } from 'react-bootstrap'
-
+import Alert from '../../components/Alert'
 import ProfileForm from './ProfileForm'
 
 class Profile extends Component {
@@ -24,7 +23,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        {this.props.message ? <Alert bsStyle={this.props.message.type}>{this.props.message.text}</Alert> : '' }
+        <Alert message={this.props.message}/>
         <ProfileForm initialValues={this.props.user} onSubmit={this.handleSubmit} />
       </div>
     )
