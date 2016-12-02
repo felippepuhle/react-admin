@@ -67,6 +67,25 @@ class API {
       })
     )
   }
+
+  static put(uri, data, options) {
+    return this.fetch(
+      uri,
+      Object.assign({}, options, {
+        method: 'PUT',
+        body: JSON.stringify(data)
+      })
+    )
+  }
+
+  static delete(uri, options) {
+    return this.fetch(
+      uri,
+      Object.assign({}, options, {
+        method: 'DELETE'
+      })
+    )
+  }
 }
 
 export default API

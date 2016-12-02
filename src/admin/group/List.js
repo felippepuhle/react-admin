@@ -6,7 +6,7 @@ import { ButtonGroup, Button } from 'react-bootstrap'
 import Content from '../templates/base/Content'
 import DataTable from '../../components/datatable'
 
-class List extends Component {
+class GroupList extends Component {
 
   render() {
     let headers = [
@@ -38,7 +38,7 @@ class List extends Component {
 
 }
 
-List.defaultProps = {
+GroupList.defaultProps = {
   title: 'Groups',
   subtitle: 'Listing all groups',
   breadcrumb: [
@@ -47,4 +47,4 @@ List.defaultProps = {
   ]
 }
 
-export default List
+export default GroupList
