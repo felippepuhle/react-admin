@@ -18,7 +18,7 @@ class Checkbox extends Component {
     return (
       <Bootstrap.FormGroup controlId={input.name} validationState={validationState}>
         <Bootstrap.Col smOffset={2} sm={10}>
-          <Bootstrap.Checkbox {...input}>{this.props.children}</Bootstrap.Checkbox>
+          <Bootstrap.Checkbox {...input}>{this.props.label}</Bootstrap.Checkbox>
         </Bootstrap.Col>
       </Bootstrap.FormGroup>
     )

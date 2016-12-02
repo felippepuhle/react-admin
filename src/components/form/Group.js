@@ -33,15 +33,15 @@ class Input extends Component {
   }
 
   render() {
-    const { type, input, meta } = this.props;
+    const { label, input, meta } = this.props;
 
     return (
       <FormGroup controlId={input.name} validationState={this.handleValidationState(meta)}>
         <Col componentClass={ControlLabel} sm={2}>
-          {this.props.children}
+          {label}
         </Col>
         <Col sm={10}>
-          <FormControl type={type} {...input} />
+          {this.props.children}
           {this.handleFeedback(meta)}
           {this.handleHelp(meta)}
         </Col>

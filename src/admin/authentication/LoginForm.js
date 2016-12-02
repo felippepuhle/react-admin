@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 import Form from '../../components/form/Form'
-import Input from '../../components/form/Input'
+import Text from '../../components/form/Text'
+import Password from '../../components/form/Password'
 import Checkbox from '../../components/form/Checkbox'
 import Submit from '../../components/form/Submit'
 
@@ -14,9 +15,9 @@ class LoginForm extends Component {
   render() {
     return (
       <Form onSubmit={this.props.handleSubmit}>
-        <Field name="login" type="text" component={Input}>Login</Field>
-        <Field name="password" type="password" component={Input}>Password</Field>
-        <Field name="remember" component={Checkbox}>Remember me</Field>
+        <Field label="Login" name="login" component={Text} />
+        <Field label="Password" name="password" component={Password} />
+        <Field label="Remember me" name="remember" component={Checkbox} />
 
         <Submit loading={this.props.submitting}>Sign in</Submit>
       </Form>
