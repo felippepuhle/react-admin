@@ -5,7 +5,7 @@ import Form from './Form'
 import Alert from '../../components/Alert'
 import Service from '../../utils/Service'
 
-class GroupEdit extends Component {
+class GroupEmailNew extends Component {
 
   constructor(props) {
     super(props)
@@ -20,30 +20,22 @@ class GroupEdit extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount() {
-    this._service.show(this.props.params.id)
-      .then(response => {
-        this.setState({
-          group: response
-        })
-      })
-  }
-
   handleSubmit(values) {
-    this._service.update(values)
+    this._service.create(values)
       .then(response => {
         this.setState({
           message: {
             type: 'success',
-            text: 'Group updated successfully'
+            text: 'Group created successfully'
           }
         })
       })
       .catch(error => {
+        console.log(error);
         this.setState({
           message: {
             type: 'danger',
-            text: 'Cannot update group'
+            text: 'Cannot create group'
           }
         })
       })
@@ -60,13 +52,13 @@ class GroupEdit extends Component {
 
 }
 
-GroupEdit.defaultProps = {
+GroupEmailNew.defaultProps = {
   title: 'Groups',
-  subtitle: 'Updating group',
+  subtitle: 'Creating group',
   breadcrumb: [
     { 'url': '/admin/groups', 'desc': 'Groups' },
-    { 'desc': 'Edit' }
+    { 'desc': 'New' }
   ]
 }
 
-export default GroupEdit
+export default GroupEmailNew

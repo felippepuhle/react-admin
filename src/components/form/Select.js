@@ -7,11 +7,12 @@ import Group from './Group'
 class Select extends Component {
 
   render() {
-    const { input } = this.props;
+    const { input } = this.props
 
     return (
       <Group {...this.props}>
         <FormControl componentClass="select" {...input}>
+          <option/>
           {
             this.props.options.map(function(result, index) {
               return (

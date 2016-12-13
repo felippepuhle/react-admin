@@ -33,7 +33,8 @@ class GroupForm extends Component {
 }
 
 const validate = new Validation({
-    name: [Validation.required]
+    name: [Validation.required],
+    level: [Validation.required]
 })
 
 GroupForm = reduxForm({

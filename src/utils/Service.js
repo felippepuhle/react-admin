@@ -11,7 +11,7 @@ class Service {
   }
 
   create(data) {
-    return API.post('admin/' + this._uri, data)
+    return API.post('admin/' + this._uri + '/create', data)
   }
 
   update(data) {

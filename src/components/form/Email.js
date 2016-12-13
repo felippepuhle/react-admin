@@ -7,7 +7,7 @@ import Group from './Group'
 class Email extends Component {
 
   render() {
-    const { input } = this.props;
+    const { input } = this.props
 
     return (
       <Group {...this.props}>

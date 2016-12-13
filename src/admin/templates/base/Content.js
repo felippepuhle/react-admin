@@ -9,7 +9,7 @@ class Content extends Component {
   	return (
       <div>
         <Breadcrumb items={this.props.breadcrumb} />
-        <PageHeader title={this.props.title} />
+        <PageHeader title={this.props.title} subtitle={this.props.subtitle} />
 
         {this.props.children}
       </div>

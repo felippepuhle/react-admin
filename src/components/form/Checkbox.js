@@ -5,7 +5,7 @@ import * as Bootstrap from 'react-bootstrap'
 class Checkbox extends Component {
 
   render() {
-    const { input, meta } = this.props;
+    const { input, meta } = this.props
 
     var validationState = null
     if (meta.error) {
